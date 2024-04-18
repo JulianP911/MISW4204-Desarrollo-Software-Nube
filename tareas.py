@@ -3,7 +3,7 @@ import moviepy.editor as mp
 from moviepy.editor import *
 from PIL import Image
 from celery import Celery
-from env import CELERY_BROKER_URL, CELERY_TASK_NAME
+from env import CELERY_BROKER_URL, CELERY_TASK_NAME, PROCESSED_FOLDER, UPLOADED_FOLDER
 from modelos.modelos import db, Status, Task
 from config import app
 
@@ -18,7 +18,7 @@ def process_video(task_id):
     if task is None:
         return 'La tarea para el procesamiento del video no fue encontrada'
 
-    video = mp.VideoFileClip(filename=f'./videos/subidos/{task.filename}')
+    video = mp.VideoFileClip(filename=f'./{UPLOADED_FOLDER}/{task.filename}')
 
     end_time = 20
     video = video.subclip(0, end_time - 1)
@@ -36,7 +36,7 @@ def process_video(task_id):
     image_clip = mp.ImageClip('./logos/IDRL.jpeg', duration=1)
     video = mp.concatenate_videoclips([image_clip, video, image_clip])
 
-    video.write_videofile(f'./videos/procesados/{task.filename}', codec="libx264")
+    video.write_videofile(f'./{PROCESSED_FOLDER}/{task.filename}', codec="libx264")
 
     task.status = Status.PROCESSED
     task.modified_at = datetime.datetime.now()

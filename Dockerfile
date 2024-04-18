@@ -22,7 +22,7 @@ ENV CELERY_TASK_NAME='process_video'
 COPY . .
 RUN pip3 install -r requirements.txt
 
-EXPOSE 8080 5000
+EXPOSE 8080
 
 
 

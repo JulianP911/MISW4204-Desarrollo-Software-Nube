@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 from modelos.modelos import Extension, Status, Task, TaskSchema
-from tareas.tareas import process_video
+from tareas import process_video
 
 task_schema = TaskSchema()
 

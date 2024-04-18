@@ -6,6 +6,7 @@ services:
     volumes:
       - "./cloud_data:/var/lib/postgresql/data"
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - PGDATA=/var/lib/postgresql/data/db
     ports:
@@ -21,8 +22,8 @@ services:
     depends_on:
       - postgres
     environment:
-      PGADMIN_DEFAULT_EMAIL: cloud@uniandes.edu.co
-      PGADMIN_DEFAULT_PASSWORD: 12345678
+      PGADMIN_DEFAULT_EMAIL: julian-padilla@hotmail.com
+      PGADMIN_DEFAULT_PASSWORD: JulianP4
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     networks:
@@ -39,19 +40,40 @@ services:
     networks:
       - custom_network
 
-  flask:
-    image: santiago9913/flask:latest
-    restart: always
-    command: sh -c "nohup flask run --host=0.0.0.0 > log.txt 2>&1 & celery --app tareas.tareas.celery worker --loglevel=info"
+  web:
+    build: .
+    command: sh -c "flask run --host=0.0.0.0"
     ports:
-      - "8080:5000"
-    volumes:
-      - celery_volume:/usr/src/app
+      - "8080:8080"
     depends_on:
       - postgres
       - redis
     networks:
       - custom_network
+    volumes:
+      - celery_volume:/usr/src/app
+      - type: volume
+        source: web_files
+        target: /nfs
+        volume:
+          nocopy: true
+
+
+  celery:
+    build: .
+    command: sh -c "celery --app tareas.celery worker --loglevel=info"
+    depends_on:
+      - web
+      - postgres
+      - redis
+    networks:
+      - custom_network
+    volumes:
+      - type: volume
+        source: celery_files
+        target: /nfs
+        volume:
+          nocopy: true
 
 networks:
   custom_network:
@@ -61,3 +83,13 @@ volumes:
   pgadmin-data:
   cache:
   celery_volume:
+  web_files:
+    driver_opts:
+      type: nfs
+      device: ':/videos-subidos'
+      o: 'addr=10.138.0.5,nolock,soft,rw'
+  celery_files:
+    driver_opts:
+      type: nfs
+      device: ':/videos-procesados'
+      o: 'addr=10.138.0.5,nolock,soft,rw'
