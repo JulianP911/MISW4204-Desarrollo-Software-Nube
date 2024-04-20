@@ -1,5 +1,5 @@
 import os
-from env import PROCESSED_FOLDER, UPLOADED_FOLDER
+from env import PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD
 from flask_restful import Resource
 from flask import request, send_file
 from modelos import User, db
@@ -193,9 +193,7 @@ class VistaTaskDetail(Resource):
         task_info = task_schema.dump(task)
         if task.status == Status.PROCESSED:
             task_info["path"] = PROCESSED_FOLDER + "/" + task.filename
-            task_info["url"] = "http://127.0.0.1:8080/api/tasks/{}/download".format(
-                task.id
-            )
+            task_info["url"] = "{}/api/tasks/{}/download".format(URL_DOWNLOAD, task.id)
 
         return task_info, 200
 

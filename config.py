@@ -22,6 +22,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = (
     f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
 app.config["PROPAGATE_EXCEPTIONS"] = True
 app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
 
