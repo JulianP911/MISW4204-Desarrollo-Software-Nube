@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a265473e-afab-4317-b253-3e43709270e4",
+		"_postman_id": "cfaa72e5-2d82-4cb7-b6d8-94f88cf2bfd8",
 		"name": "IDRL",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21689315"
@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"JulianP911\",\n    \"email\": \"juli@1232.com\",\n    \"password1\": \"123456\",\n    \"password2\": \"123456\"\n}",
+					"raw": "{\n    \"username\": \"LauraC\",\n    \"email\": \"laura@1232.com\",\n    \"password1\": \"123456\",\n    \"password2\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -27,15 +27,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/auth/signup",
+					"raw": "http://34.82.48.247:8080/api/auth/signup",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"34",
+						"82",
+						"48",
+						"247"
 					],
-					"port": "5000",
+					"port": "8080",
 					"path": [
 						"api",
 						"auth",
@@ -54,6 +54,19 @@
 		},
 		{
 			"name": "LogIn",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = pm.response.json()",
+							"pm.environment.set('jwt', res.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -65,7 +78,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"JulianP911\",\n    \"password\": \"123456\"\n}",
+					"raw": "{\n    \"username\": \"LauraC\",\n    \"password\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,15 +86,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/auth/login",
+					"raw": "http://34.82.48.247:8080/api/auth/login",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"34",
+						"82",
+						"48",
+						"247"
 					],
-					"port": "5000",
+					"port": "8080",
 					"path": [
 						"api",
 						"auth",
@@ -106,7 +119,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxMjc5NjY5MCwianRpIjoiZjE4YmY1NWUtNzU3ZS00ZGFiLThiMDktOTBmZTcxODA0ZGZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ikp1bGlhblA5MTEiLCJuYmYiOjE3MTI3OTY2OTAsImNzcmYiOiJhYjYxOGVlZC01ZTBjLTQxM2YtYTcxNy1mYTU4OTcwMTc0OGIiLCJleHAiOjE3MTI4ODMwOTB9.E7TEJgaBpDoeAMvLHS4AvNrlXerZDuhwa6CqeXwD1so",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -119,20 +132,20 @@
 						{
 							"key": "filename",
 							"type": "file",
-							"src": "/Users/julianpadilla/Downloads/Ejemplo.mp4"
+							"src": "/Users/julianpadilla/Downloads/Prueba.mp4"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/tasks",
+					"raw": "http://34.82.48.247:8080/api/tasks",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"34",
+						"82",
+						"48",
+						"247"
 					],
-					"port": "5000",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -186,7 +199,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxMjc5NjY5MCwianRpIjoiZjE4YmY1NWUtNzU3ZS00ZGFiLThiMDktOTBmZTcxODA0ZGZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ikp1bGlhblA5MTEiLCJuYmYiOjE3MTI3OTY2OTAsImNzcmYiOiJhYjYxOGVlZC01ZTBjLTQxM2YtYTcxNy1mYTU4OTcwMTc0OGIiLCJleHAiOjE3MTI4ODMwOTB9.E7TEJgaBpDoeAMvLHS4AvNrlXerZDuhwa6CqeXwD1so",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -198,15 +211,15 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/tasks",
+					"raw": "http://34.82.48.247:8080/api/tasks",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"34",
+						"82",
+						"48",
+						"247"
 					],
-					"port": "5000",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -226,7 +239,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxMjc5NjY5MCwianRpIjoiZjE4YmY1NWUtNzU3ZS00ZGFiLThiMDktOTBmZTcxODA0ZGZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ikp1bGlhblA5MTEiLCJuYmYiOjE3MTI3OTY2OTAsImNzcmYiOiJhYjYxOGVlZC01ZTBjLTQxM2YtYTcxNy1mYTU4OTcwMTc0OGIiLCJleHAiOjE3MTI4ODMwOTB9.E7TEJgaBpDoeAMvLHS4AvNrlXerZDuhwa6CqeXwD1so",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -238,19 +251,19 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/tasks/64",
+					"raw": "http://34.82.48.247:8080/api/tasks/56",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"34",
+						"82",
+						"48",
+						"247"
 					],
-					"port": "5000",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
-						"64"
+						"56"
 					]
 				}
 			},
@@ -264,7 +277,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxMjc5NjY5MCwianRpIjoiZjE4YmY1NWUtNzU3ZS00ZGFiLThiMDktOTBmZTcxODA0ZGZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Ikp1bGlhblA5MTEiLCJuYmYiOjE3MTI3OTY2OTAsImNzcmYiOiJhYjYxOGVlZC01ZTBjLTQxM2YtYTcxNy1mYTU4OTcwMTc0OGIiLCJleHAiOjE3MTI4ODMwOTB9.E7TEJgaBpDoeAMvLHS4AvNrlXerZDuhwa6CqeXwD1so",
+							"value": "{{jwt}}",
 							"type": "string"
 						}
 					]
@@ -272,19 +285,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/tasks/64/download",
+					"raw": "http://34.82.48.247:8080/api/tasks/28/download",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"34",
+						"82",
+						"48",
+						"247"
 					],
-					"port": "5000",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
-						"64",
+						"28",
 						"download"
 					]
 				}
