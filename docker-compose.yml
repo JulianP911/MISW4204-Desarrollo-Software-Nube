@@ -49,11 +49,8 @@ services:
       - custom_network
     volumes:
       - celery_volume:/usr/src/app
-      - type: volume
-        source: web_files
-        target: /cloud-docker/videos/subidos
-        volume:
-          nocopy: true
+      - ./videos-subidos:/cloud-docker/videos/subidos
+      - ./videos-procesados:/cloud-docker/videos/procesados
 
   celery:
     build: .
@@ -61,11 +58,8 @@ services:
     networks:
       - custom_network
     volumes:
-      - type: volume
-        source: celery_files
-        target: /cloud-docker/videos/procesados
-        volume:
-          nocopy: true
+      - ./videos-subidos:/cloud-docker/videos/subidos
+      - ./videos-procesados:/cloud-docker/videos/procesados
 
 networks:
   custom_network:
@@ -75,13 +69,3 @@ volumes:
   pgadmin-data:
   cache:
   celery_volume:
-  web_files:
-    driver_opts:
-      type: nfs
-      device: ':/var/nfs/videos-subidos'
-      o: 'addr=10.138.0.5,nolock,soft,rw'
-  celery_files:
-    driver_opts:
-      type: nfs
-      device: ':/var/nfs/videos-procesados'
-      o: 'addr=10.138.0.5,nolock,soft,rw'
