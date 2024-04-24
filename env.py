@@ -8,8 +8,8 @@ POSTGRES_PORT = os.getenv("POSTGRES_PORT", default=4345)
 
 JWT_SECRET_KEY = os.getenv("JWT_SECRET", default="MISW-4204")
 
-UPLOADED_FOLDER = os.getenv("UPLOAD_FOLDER", default="./videos/subidos")
-PROCESSED_FOLDER = os.getenv("PROCESSED_FOLDER", default="./videos/procesados")
+UPLOADED_FOLDER = os.getenv("UPLOAD_FOLDER", default="videos-subidos")
+PROCESSED_FOLDER = os.getenv("PROCESSED_FOLDER", default="videos-procesados")
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", default="redis://localhost:6379/0")
 CELERY_TASK_NAME = os.getenv("CELERY_TASK_NAME", default="process_video")

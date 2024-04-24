@@ -98,7 +98,7 @@ class VistaTask(Resource):
             }, 400
 
         bucket = storage_client.bucket(BUCKET_NAME)
-        blob = bucket.blob('./videos-subidos')
+        blob = bucket.blob(UPLOADED_FOLDER + '/' + filename)
         blob.upload_from_string(file.read(), content_type=file.content_type)
 
         username = get_jwt_identity()
@@ -134,10 +134,11 @@ class VistaTask(Resource):
             return {"message": "El usuario no es propietario del archivo"}, 400
         try:
             # Eliminar archivos del sistema
-            file_path = os.path.join(UPLOADED_FOLDER, task.filename)
-            os.remove(file_path)
-            file_path = os.path.join(PROCESSED_FOLDER, task.filename)
-            os.remove(file_path)
+            bucket = storage_client.bucket(BUCKET_NAME)
+            blob = bucket.blob(UPLOADED_FOLDER + '/' + task.filename)
+            blob.delete()
+            blob = bucket.blob(PROCESSED_FOLDER + '/' + task.filename)
+            blob.delete()
 
             # Eliminarlo de la DB
             db.session.delete(task)
@@ -220,7 +221,9 @@ class VistaDownloadTask(Resource):
             return {"message": "El usuario no es propietario del archivo"}, 400
 
         if task.status == Status.PROCESSED:
-            return send_file(PROCESSED_FOLDER + "/" + task.filename, as_attachment=True)
+            bucket = storage_client.bucket(BUCKET_NAME)
+            blob = bucket.blob(PROCESSED_FOLDER + "/" + task.filename)
+            return send_file(blob.download_as_bytes(), as_attachment=True)
 
         return {
             "message": "El archivo no ha sido procesado por lo cual no se puede descargar"
