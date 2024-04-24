@@ -9,7 +9,7 @@ from config import app
 from google.cloud import storage
 
 celery = Celery(CELERY_TASK_NAME, broker=CELERY_BROKER_URL)
-storage_client = storage.Client.from_service_account_json(CREDENTIALS_PATH)
+storage_client = storage.Client()
 app.app_context().push()
 
 # Task - Procesamiento de video: Se encarga de procesar el video subido por el usuario, recortando el video a 20 segundos, ajustando la relación de aspecto a 16:9, añadiendo un logo al inicio y al final del video y guardando el video procesado en la carpeta videos/procesados.

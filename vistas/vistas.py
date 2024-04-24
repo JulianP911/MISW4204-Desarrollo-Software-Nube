@@ -13,7 +13,7 @@ from google.cloud import storage
 
 task_schema = TaskSchema()
 
-storage_client = storage.Client.from_service_account_json(CREDENTIALS_PATH)
+storage_client = storage.Client()
 
 class VistaSignUp(Resource):
 
