@@ -1,5 +1,5 @@
 import os
-from env import PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD
+from env import BUCKET_NAME, CREDENTIALS_PATH, PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD
 from flask_restful import Resource
 from flask import request, send_file
 from modelos import User, db
@@ -9,9 +9,11 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 
 from modelos.modelos import Extension, Status, Task, TaskSchema
 from tareas import process_video
+from google.cloud import storage
 
 task_schema = TaskSchema()
 
+storage_client = storage.Client.from_service_account_json(CREDENTIALS_PATH)
 
 class VistaSignUp(Resource):
 
@@ -95,8 +97,9 @@ class VistaTask(Resource):
                 "message": "El archivo no tiene una extension valida para su procesamiento"
             }, 400
 
-        file_path = os.path.join(UPLOADED_FOLDER, filename)
-        file.save(file_path)
+        bucket = storage_client.bucket(BUCKET_NAME)
+        blob = bucket.blob('./videos-subidos')
+        blob.upload_from_string(file.read(), content_type=file.content_type)
 
         username = get_jwt_identity()
         user = User.query.filter(User.username == username).first()

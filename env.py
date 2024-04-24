@@ -15,3 +15,5 @@ CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", default="redis://localhost:63
 CELERY_TASK_NAME = os.getenv("CELERY_TASK_NAME", default="process_video")
 
 URL_DOWNLOAD = os.getenv("URL_DOWNLOAD", default="http://localhost:5000")
+CREDENTIALS_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", default="./desarrollo-solucion-nube-095b37877bf3.json")
+BUCKET_NAME = os.getenv("BUCKET_NAME", default="desarrollo-solucion-nube")
