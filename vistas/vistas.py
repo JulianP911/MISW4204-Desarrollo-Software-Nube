@@ -223,7 +223,8 @@ class VistaDownloadTask(Resource):
         if task.status == Status.PROCESSED:
             bucket = storage_client.bucket(BUCKET_NAME)
             blob = bucket.blob(PROCESSED_FOLDER + "/" + task.filename)
-            return send_file(blob.download_as_bytes(), as_attachment=True)
+            blob.download_to_filename('/tmp/' + task.filename)
+            return send_file('/tmp/' + task.filename, as_attachment=True)
 
         return {
             "message": "El archivo no ha sido procesado por lo cual no se puede descargar"

@@ -44,8 +44,8 @@ def process_video(task_id):
     video = mp.concatenate_videoclips([image_clip, video, image_clip])
 
     video.write_videofile(f'./videos/procesados/{task.filename}', codec="libx264")
-    blob = bucket.blob(UPLOADED_FOLDER)
-    blob.upload_from_string(f'./videos/procesados/{task.filename}')
+    blob = bucket.blob(f'{PROCESSED_FOLDER}/{task.filename}')
+    blob.upload_from_filename(f'./videos/procesados/{task.filename}')
 
     os.remove(f'./videos/subidos/{task.filename}')
     os.remove(f'./videos/procesados/{task.filename}')
