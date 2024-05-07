@@ -1,5 +1,5 @@
 import os
-from env import BUCKET_NAME, CREDENTIALS_PATH, PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD
+from env import BUCKET_NAME, CREDENTIALS_PATH, PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD, SUBSCRIPTION_NAME
 from flask_restful import Resource
 from flask import request, send_file
 from modelos import User, db
@@ -10,10 +10,13 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from modelos.modelos import Extension, Status, Task, TaskSchema
 from tareas import process_video
 from google.cloud import storage
+from google.cloud import pubsub_v1
 
 task_schema = TaskSchema()
 
 storage_client = storage.Client()
+
+publisher = pubsub_v1.PublisherClient()
 
 class VistaSignUp(Resource):
 
@@ -113,7 +116,7 @@ class VistaTask(Resource):
         db.session.add(task)
         db.session.commit()
 
-        process_video.apply_async((task.id,), countdown=10)
+        publisher.publish(SUBSCRIPTION_NAME, str(task.id).encode())
 
         return task_schema.dump(task), 200
 

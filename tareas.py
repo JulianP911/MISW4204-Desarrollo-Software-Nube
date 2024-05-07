@@ -3,21 +3,19 @@ import moviepy.editor as mp
 from moviepy.editor import *
 from PIL import Image
 from celery import Celery
-from env import BUCKET_NAME, CELERY_BROKER_URL, CELERY_TASK_NAME, CREDENTIALS_PATH, PROCESSED_FOLDER, UPLOADED_FOLDER
+from env import BUCKET_NAME, PROCESSED_FOLDER, UPLOADED_FOLDER, SUBSCRIPTION_NAME
 from modelos.modelos import db, Status, Task
 from config import app
 from google.cloud import storage
+from google.cloud import pubsub_v1
 
-celery = Celery(CELERY_TASK_NAME, broker=CELERY_BROKER_URL)
 storage_client = storage.Client()
-app.app_context().push()
 
 # Task - Procesamiento de video: Se encarga de procesar el video subido por el usuario, recortando el video a 20 segundos, ajustando la relación de aspecto a 16:9, añadiendo un logo al inicio y al final del video y guardando el video procesado en la carpeta videos/procesados.
-@celery.task()
-def process_video(task_id):
+def process_video(message):
     db.engine.dispose()
 
-    task = Task.query.get(task_id)
+    task = Task.query.get(int(message.data))
 
     if task is None:
         return 'La tarea para el procesamiento del video no fue encontrada'
@@ -53,3 +51,13 @@ def process_video(task_id):
     task.status = Status.PROCESSED
     task.modified_at = datetime.datetime.now()
     db.session.commit()
+
+app.app_context().push()
+
+subscriber = pubsub_v1.SubscriberClient()
+subscription_path = SUBSCRIPTION_NAME
+
+streaming_pull_future = subscriber.subscribe(subscription_path, callback=process_video)
+print(f'Listening for tasks on {subscription_path}..\n')
+
+streaming_pull_future.result()

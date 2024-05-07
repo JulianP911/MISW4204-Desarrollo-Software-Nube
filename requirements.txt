@@ -19,3 +19,4 @@ pillow==10.2.0
 tzdata
 psycopg2==2.9.3
 google-cloud-storage==2.16.0
+google-cloud-pubsub==2.19.0
