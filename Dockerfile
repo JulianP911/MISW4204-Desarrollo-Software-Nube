@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM python:3.11.9
 
 RUN apt update
 RUN apt install python3 python3-pip -y
@@ -17,10 +17,11 @@ ENV UPLOAD_FOLDER="videos-subidos"
 ENV PROCESSED_FOLDER="videos-procesados"
 ENV CELERY_BROKER_URL="redis://redis:6379/0"
 ENV CELERY_TASK_NAME='process_video'
-
+ENV TOPIC_NAME='projects/desarrollo-solucion-nube/topics/procesar-video'
+ENV SUBSCRIPTION_NAME='projects/desarrollo-solucion-nube/subscriptions/procesar-video-subscription'
 
 COPY . .
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt --break-system-packages
 
 EXPOSE 8080
 

@@ -32,8 +32,6 @@ app.config["PROCESSED_FOLDER"] = PROCESSED_FOLDER
 os.makedirs(app.config["UPLOADED_FOLDER"], exist_ok=True)
 os.makedirs(app.config["PROCESSED_FOLDER"], exist_ok=True)
 
-app.config["CELERY_BROKER_URL"] = CELERY_BROKER_URL
-
 jwt = JWTManager(app)
 
 app_context = app.app_context()

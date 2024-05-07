@@ -1,5 +1,5 @@
 import os
-from env import BUCKET_NAME, CREDENTIALS_PATH, PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD, SUBSCRIPTION_NAME
+from env import BUCKET_NAME, PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD, TOPIC_NAME
 from flask_restful import Resource
 from flask import request, send_file
 from modelos import User, db
@@ -8,7 +8,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 from modelos.modelos import Extension, Status, Task, TaskSchema
-from tareas import process_video
 from google.cloud import storage
 from google.cloud import pubsub_v1
 
@@ -116,7 +115,7 @@ class VistaTask(Resource):
         db.session.add(task)
         db.session.commit()
 
-        publisher.publish(SUBSCRIPTION_NAME, str(task.id).encode())
+        publisher.publish(TOPIC_NAME, str(task.id).encode())
 
         return task_schema.dump(task), 200
 

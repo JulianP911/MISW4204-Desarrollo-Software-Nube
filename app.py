@@ -10,9 +10,6 @@ from vistas.vistas import (
     VistaTaskDetail,
 )
 
-celery = Celery(app.name, broker=app.config["CELERY_BROKER_URL"])
-celery.conf.update(app.config)
-
 api = Api(app)
 api.add_resource(VistaSignUp, "/api/auth/signup")
 api.add_resource(VistaLogin, "/api/auth/login")

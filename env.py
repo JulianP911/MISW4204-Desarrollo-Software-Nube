@@ -18,4 +18,5 @@ URL_DOWNLOAD = os.getenv("URL_DOWNLOAD", default="http://localhost:5000")
 CREDENTIALS_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", default="./desarrollo-solucion-nube-095b37877bf3.json")
 BUCKET_NAME = os.getenv("BUCKET_NAME", default="desarrollo-solucion-nube")
 
-SUBSCRIPTION_NAME = os.getenv("SUBSCRIPTION_NAME", default="projects/desarrollo-solucion-nube/topics/procesar-video")
+TOPIC_NAME = os.getenv("TOPIC_NAME", default="projects/desarrollo-solucion-nube/topics/procesar-video")
+SUBSCRIPTION_NAME = os.getenv("SUBSCRIPTION_NAME", default="projects/desarrollo-solucion-nube/subscriptions/procesar-video-subscription")
