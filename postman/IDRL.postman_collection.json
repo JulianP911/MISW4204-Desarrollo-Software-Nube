@@ -14,8 +14,7 @@
 					{
 						"key": "Authorization",
 						"value": "{{Auth}}",
-						"type": "text",
-						"uuid": "a0e99beb-1c53-4f63-8334-5e127db34e1c"
+						"uuid": "4b83b8b9-c973-41f7-8b6a-8d940415a254"
 					}
 				],
 				"body": {
@@ -28,13 +27,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://34.117.5.123:80/api/auth/signup",
+					"raw": "http://34.36.175.227:80/api/auth/signup",
 					"protocol": "http",
 					"host": [
 						"34",
-						"117",
-						"5",
-						"123"
+						"36",
+						"175",
+						"227"
 					],
 					"port": "80",
 					"path": [
@@ -74,8 +73,7 @@
 					{
 						"key": "Authorization",
 						"value": "{{Auth}}",
-						"type": "text",
-						"uuid": "a6c8b2ed-b8dd-4fd7-9899-1340ef9a0c9a"
+						"uuid": "0804f8ae-742c-4c4f-91bd-49119da037ff"
 					}
 				],
 				"body": {
@@ -253,7 +251,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks/10",
+					"raw": "http://34.36.175.227:80/api/tasks/30",
 					"protocol": "http",
 					"host": [
 						"34",
@@ -265,7 +263,7 @@
 					"path": [
 						"api",
 						"tasks",
-						"10"
+						"30"
 					]
 				}
 			},
@@ -287,7 +285,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks/10/download",
+					"raw": "http://34.36.175.227:80/api/tasks/30/download",
 					"protocol": "http",
 					"host": [
 						"34",
@@ -299,7 +297,7 @@
 					"path": [
 						"api",
 						"tasks",
-						"10",
+						"30",
 						"download"
 					]
 				}
