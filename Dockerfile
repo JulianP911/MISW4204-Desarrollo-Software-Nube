@@ -25,5 +25,4 @@ RUN pip3 install -r requirements.txt --break-system-packages
 
 EXPOSE 8080
 
-
-
+CMD ["sh", "-c", "flask run --host=0.0.0.0 --port=8080"]

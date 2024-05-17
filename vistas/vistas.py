@@ -1,4 +1,10 @@
+import base64
 import os
+import tempfile
+import datetime
+import moviepy.editor as mp
+from moviepy.editor import *
+from PIL import Image
 from env import BUCKET_NAME, PROCESSED_FOLDER, UPLOADED_FOLDER, URL_DOWNLOAD, TOPIC_NAME
 from flask_restful import Resource
 from flask import request, send_file
@@ -231,3 +237,54 @@ class VistaDownloadTask(Resource):
         return {
             "message": "El archivo no ha sido procesado por lo cual no se puede descargar"
         }, 400
+
+def list_files(directory):
+    """
+    List all files in the given directory and its subdirectories.
+    """
+    for root, _, files in os.walk(directory):
+        for file in files:
+            yield os.path.join(root, file)
+
+class VistaProcessTask(Resource):
+
+    # POST - Permite procesar un video.
+    def post(self):
+        task_id = request.json["message"]["data"]
+        task = Task.query.get(int(base64.b64decode(task_id).decode('utf-8')))
+
+        if task is None:
+            message = 'La tarea para el procesamiento del video no fue encontrada'
+            return message
+
+        bucket = storage_client.bucket(BUCKET_NAME)
+        blob = bucket.blob(f'{UPLOADED_FOLDER}/{task.filename}')
+        blob.download_to_filename(task.filename)
+
+        video = mp.VideoFileClip(filename=f'./{task.filename}')
+
+        end_time = 20
+        video = video.subclip(0, end_time - 1)
+
+        new_width = int(video.h * 16 / 9)
+        video = vfx.crop(video, x1=0, y1=0, width=new_width, height=video.h)
+
+        end_time = 20
+        video = video.subclip(1, end_time - 1)
+
+        image = Image.open('./logos/IDRL.jpeg')
+        image_resized = image.resize((video.w, video.h))
+        image_resized.save('./logos/IDRL.jpeg')
+
+        image_clip = mp.ImageClip('./logos/IDRL.jpeg', duration=1)
+        video = mp.concatenate_videoclips([image_clip, video, image_clip])
+
+        video.write_videofile(f'./{task.filename}', codec="libx264")
+        blob = bucket.blob(f'{PROCESSED_FOLDER}/{task.filename}')
+        blob.upload_from_filename(f'./{task.filename}')
+
+        task.status = Status.PROCESSED
+        task.modified_at = datetime.datetime.now()
+        db.session.commit()
+
+        return 200
