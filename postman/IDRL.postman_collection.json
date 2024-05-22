@@ -13,8 +13,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{Auth}}",
-						"uuid": "4b83b8b9-c973-41f7-8b6a-8d940415a254"
+						"value": "{{Auth}}"
 					}
 				],
 				"body": {
@@ -27,15 +26,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://34.36.175.227:80/api/auth/signup",
-					"protocol": "http",
+					"raw": "https://web-ptqamzwvea-uw.a.run.app/api/auth/signup",
+					"protocol": "https",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"auth",
@@ -72,8 +70,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{Auth}}",
-						"uuid": "0804f8ae-742c-4c4f-91bd-49119da037ff"
+						"value": "{{Auth}}"
 					}
 				],
 				"body": {
@@ -86,15 +83,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://34.36.175.227:80/api/auth/login",
-					"protocol": "http",
+					"raw": "https://web-ptqamzwvea-uw.a.run.app/api/auth/login",
+					"protocol": "https",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"auth",
@@ -132,20 +128,19 @@
 						{
 							"key": "filename",
 							"type": "file",
-							"src": "/Users/julianpadilla/Downloads/VID_108190313_050539_256.mp4"
+							"src": "/Users/julianpadilla/Downloads/Video_Karol_G.mp4"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks",
-					"protocol": "http",
+					"raw": "https://web-ptqamzwvea-uw.a.run.app/api/tasks",
+					"protocol": "https",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"tasks"
@@ -170,19 +165,18 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks/10",
+					"raw": "http://web-ptqamzwvea-uw.a.run.app/api/tasks/12",
 					"protocol": "http",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"tasks",
-						"10"
+						"12"
 					]
 				}
 			},
@@ -211,15 +205,14 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks",
-					"protocol": "http",
+					"raw": "https://web-ptqamzwvea-uw.a.run.app/api/tasks",
+					"protocol": "https",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"tasks"
@@ -251,19 +244,18 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks/30",
+					"raw": "http://web-ptqamzwvea-uw.a.run.app/api/tasks/12",
 					"protocol": "http",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"tasks",
-						"30"
+						"12"
 					]
 				}
 			},
@@ -285,20 +277,43 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://34.36.175.227:80/api/tasks/30/download",
+					"raw": "http://web-ptqamzwvea-uw.a.run.app/api/tasks/12/download",
 					"protocol": "http",
 					"host": [
-						"34",
-						"36",
-						"175",
-						"227"
+						"web-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
 					],
-					"port": "80",
 					"path": [
 						"api",
 						"tasks",
-						"30",
+						"12",
 						"download"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Process task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://worker-ptqamzwvea-uw.a.run.app/api/tasks/1/process",
+					"protocol": "https",
+					"host": [
+						"worker-ptqamzwvea-uw",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"1",
+						"process"
 					]
 				}
 			},

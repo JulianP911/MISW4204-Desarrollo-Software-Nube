@@ -5,12 +5,10 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Escenario 1">
-        <intProp name="ThreadGroup.num_threads">30</intProp>
+        <intProp name="ThreadGroup.num_threads">60</intProp>
         <intProp name="ThreadGroup.ramp_time">5</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -21,9 +19,8 @@
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login">
-          <stringProp name="HTTPSampler.domain">34.36.175.227</stringProp>
-          <stringProp name="HTTPSampler.port">80</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.domain">web-ptqamzwvea-uw.a.run.app</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/api/auth/login</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -127,7 +124,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -166,9 +163,8 @@
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post task">
-          <stringProp name="HTTPSampler.domain">34.36.175.227</stringProp>
-          <stringProp name="HTTPSampler.port">80</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.domain">web-ptqamzwvea-uw.a.run.app</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/api/tasks</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -176,9 +172,9 @@
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/Users/julianpadilla/Downloads/VID_108190313_050539_256.mp4" elementType="HTTPFileArg">
+              <elementProp name="/Users/julianpadilla/Downloads/Video_Karol_G.mp4" elementType="HTTPFileArg">
                 <stringProp name="File.mimetype">application/octet-stream</stringProp>
-                <stringProp name="File.path">/Users/julianpadilla/Downloads/VID_108190313_050539_256.mp4</stringProp>
+                <stringProp name="File.path">/Users/julianpadilla/Downloads/Video_Karol_G.mp4</stringProp>
                 <stringProp name="File.paramname">filename</stringProp>
               </elementProp>
             </collectionProp>
@@ -193,7 +189,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">authorization</stringProp>
-                <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTIxNzYyOCwianRpIjoiZTU1ZTI4ZDYtYTZhMi00YTk4LWIzZTAtNTk1OGRiYmVjNDI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxhdXJhQyIsIm5iZiI6MTcxNTIxNzYyOCwiY3NyZiI6IjVkZDI5Yjg4LTQwYTYtNDVkMy05YzIyLTczNjVmMzY2NDZjYSIsImV4cCI6MTcxNTMwNDAyOH0.z5abZFyGfGUG8nHpvAz8nAygl3cf_ubR18FqxWd2bIQ</stringProp>
+                <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNjMzOTExMSwianRpIjoiNGU0MGJlMjEtZWZlOC00NGY0LTkzMmYtMDM3Yzc1NWFkMGI2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxhdXJhQyIsIm5iZiI6MTcxNjMzOTExMSwiY3NyZiI6ImM1ZTM3NjViLTg5NGMtNDA3OC04ZGYxLTg2MjJiNzdkODYyMiIsImV4cCI6MTcxNjQyNTUxMX0.VKweiQM9A_xP12ZKhG_ouKOsEn1GxjesiUN5OkuFil8</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -272,7 +268,7 @@
             <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -310,9 +306,13 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+          <stringProp name="ConstantTimer.delay">300</stringProp>
+        </ConstantTimer>
+        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Escenario 2">
-        <intProp name="ThreadGroup.num_threads">7</intProp>
+        <intProp name="ThreadGroup.num_threads">60</intProp>
         <intProp name="ThreadGroup.ramp_time">5</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -323,9 +323,8 @@
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post task">
-          <stringProp name="HTTPSampler.domain">34.36.175.227</stringProp>
-          <stringProp name="HTTPSampler.port">80</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.domain">web-ptqamzwvea-uw.a.run.app</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
           <stringProp name="HTTPSampler.path">/api/tasks</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -333,9 +332,9 @@
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/Users/julianpadilla/Downloads/VID_108190313_050539_256.mp4" elementType="HTTPFileArg">
+              <elementProp name="/Users/julianpadilla/Downloads/Video_Karol_G.mp4" elementType="HTTPFileArg">
                 <stringProp name="File.mimetype">application/octet-stream</stringProp>
-                <stringProp name="File.path">/Users/julianpadilla/Downloads/VID_108190313_050539_256.mp4</stringProp>
+                <stringProp name="File.path">/Users/julianpadilla/Downloads/Video_Karol_G.mp4</stringProp>
                 <stringProp name="File.paramname">filename</stringProp>
               </elementProp>
             </collectionProp>
@@ -350,7 +349,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">authorization</stringProp>
-                <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTIyNDE0NCwianRpIjoiZDZiMmU2ZTYtMmM5My00ZWVmLWExMmEtNWY0NGYxMmFjYWVhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxhdXJhQyIsIm5iZiI6MTcxNTIyNDE0NCwiY3NyZiI6IjI3MDQ5OTE3LWU5ODctNDcyOS04OWE2LTY5YjE2NThmMjQ2YyIsImV4cCI6MTcxNTMxMDU0NH0.-spzZptNOlD22uAN00xTxvOJ6Wyhz7dmfxv9Sx3RVs8</stringProp>
+                <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNjMzOTExMSwianRpIjoiNGU0MGJlMjEtZWZlOC00NGY0LTkzMmYtMDM3Yzc1NWFkMGI2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxhdXJhQyIsIm5iZiI6MTcxNjMzOTExMSwiY3NyZiI6ImM1ZTM3NjViLTg5NGMtNDA3OC04ZGYxLTg2MjJiNzdkODYyMiIsImV4cCI6MTcxNjQyNTUxMX0.VKweiQM9A_xP12ZKhG_ouKOsEn1GxjesiUN5OkuFil8</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -429,7 +428,7 @@
             <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
